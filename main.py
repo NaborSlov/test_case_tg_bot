@@ -1,10 +1,14 @@
 import logging
+import os
 
 from aiogram import Bot, Dispatcher, executor, types
+from dotenv import load_dotenv
 
 from utils import convert_mp3_to_wav, search_face
 
-API_TOKEN = "5643100545:AAFAQyo6FCMad9BiEdTq5Igb76VkjOkaSIA"
+load_dotenv()
+
+API_TOKEN = os.environ.get('API_TOKEN')
 
 logging.basicConfig(level=logging.INFO)
 
