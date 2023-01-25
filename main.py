@@ -18,7 +18,7 @@ dp = Dispatcher(bot=bot)
 
 @dp.message_handler(commands=["start"])
 async def send_start_message(message: types.Message):
-    await message.reply("Привет!\nЭтот бот умеет сохранять сообщения\nи фотографии с людьми.")
+    await message.reply("Привет!\nЭтот бот умеет сохранять аудио сообщения\nи фотографии с людьми.")
 
 
 @dp.message_handler(content_types=[types.ContentType.VOICE])
@@ -40,9 +40,10 @@ async def photo(message: types.Message):
                             make_dirs=True)
 
     if not search_face(file_path):
+        os.remove(file_path)
         await message.answer("Не удалось сохранить фото")
-
-    await message.answer("Фото сохранено")
+    else:
+        await message.answer("Фото сохранено")
 
 
 if __name__ == "__main__":
